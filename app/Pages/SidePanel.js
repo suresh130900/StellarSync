@@ -19,6 +19,7 @@ import currencyRupeeIcon from "@heroicons/react/20/solid/esm/CurrencyRupeeIcon";
 import cloudIcon from "@heroicons/react/20/solid/esm/CloudIcon";
 import QuestionMarkIcon from '@/app/Components/QuestionMark';
 import Projects from "@/app/Components/Projects";
+import HomePage from "@/app/Pages/HomePage";
 
 const navigation = [
     { name: 'Billing', href: '#', icon: currencyRupeeIcon, current: true },
@@ -182,29 +183,50 @@ export default function Example() {
                                 alt="Your Company"
                             />
                         </div>
-                        <div>
-                            <div className="flex flex-col text-white p-4 space-y-4">
-                                <h1 className="text-md font-semibold">MANAGE</h1>
-                                <ul className="flex flex-col space-y-2">
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Apps</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Droplets</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Functions</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Kubernetes</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Volumes Block Storage</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Databases</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Spaces Object Storage</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Container Registry</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Images</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Networking</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Monitoring</a></li>
-                                    <li><a href="#" className="text-white font-semibold hover:underline">Add-Ons</a></li>
-                                </ul>
-                            </div>
 
-                        </div>
                         <nav className="flex flex-1 flex-col">
                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
                                 <li>
+                                    <h1 className="text-md font-semibold text-white mb-4 ">PROJECTS</h1>
+                                    <ul className="flex flex-col space-y-3 mb-8">
+                                        <div className="flex">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                                            </svg>
+                                            <li><a href="#" className="text-white font-semibold text-sm hover:underline ml-3">First-Project</a></li>
+                                        </div>
+                                        <div className="flex">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="white"
+                                                width="20"
+                                                height="20">
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M12 4v16m8-8H4"/>
+                                            </svg>
+                                            <li><a href="#" className="text-white font-semibold text-sm hover:underline ml-3">New Project</a></li>
+                                        </div>
+                                    </ul>
+                                    <h1 className="text-md font-semibold text-white mb-4 ">MANAGE</h1>
+                                    <ul className="flex flex-col space-y-3 mb-9">
+                                        <li><a href="#" className="text-white font-semibold text-sm hover:underline">Apps</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Droplets</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Functions</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Kubernetes</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Volumes Block Storage</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Databases</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Spaces Object Storage</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Container Registry</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Images</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Networking</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Monitoring</a></li>
+                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Add-Ons</a></li>
+                                    </ul>
                                     <ul role="list" className="-mx-2 space-y-1">
                                         {navigation.map((item) => (
                                             <li key={item.name}>
@@ -229,6 +251,7 @@ export default function Example() {
                                             </li>
                                         ))}
                                     </ul>
+
                                 </li>
                                 <li>
                                     <div className="text-xs font-semibold leading-6 text-indigo-200">Your teams</div>
@@ -244,9 +267,9 @@ export default function Example() {
                                                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                                     )}
                                                 >
-                          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                            {team.initial}
-                          </span>
+                                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                                                    {team.initial}
+                                                  </span>
                                                     <span className="truncate">{team.name}</span>
                                                 </a>
                                             </li>
@@ -303,6 +326,9 @@ export default function Example() {
                                         type="submit"
                                         className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                         Create
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
                                     </button>
                                 </div>
                                 <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
@@ -324,19 +350,18 @@ export default function Example() {
                                         <img
                                             className="h-8 w-8 rounded-full bg-gray-50"
                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt=""
-                                        />
+                                            alt=""/>
                                         <span className="hidden lg:flex lg:items-center">
-                      <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
-                        Tom Cook
-                          <div>
-                               <span className="ml-4 text-sm font-medium leading-6 text-gray-900" aria-hidden="true">
-                                    Estimated Cost: $0.00
-                               </span>
-                          </div>
-                      </span>
-                      <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
-                    </span>
+                                          <span className="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">
+                                            Tom Cook
+                                              <div>
+                                                   <span className="ml-4 text-sm font-medium leading-6 text-gray-900" aria-hidden="true">
+                                                        Estimated Cost: $0.00
+                                                   </span>
+                                              </div>
+                                          </span>
+                                          <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                                        </span>
                                     </Menu.Button>
                                     <Transition
                                         as={Fragment}
@@ -371,7 +396,10 @@ export default function Example() {
                     </div>
 
                     <main className="py-10">
-                        <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+                        <div className="px-4 sm:px-6 lg:px-8 ml-10">
+                            {/* Your content */}
+                            <HomePage />
+                        </div>
                     </main>
                 </div>
             </div>
