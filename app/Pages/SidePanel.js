@@ -4,27 +4,20 @@ import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
     Bars3Icon,
     BellIcon,
-    CalendarIcon,
-    ChartPieIcon,
     Cog6ToothIcon,
-    DocumentDuplicateIcon,
-    FolderIcon,
-    HomeIcon,
     UsersIcon,
     XMarkIcon,
-} from '@heroicons/react/24/outline'
+}
+from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import cogIcon from "@heroicons/react/20/solid/esm/CogIcon";
 import currencyRupeeIcon from "@heroicons/react/20/solid/esm/CurrencyRupeeIcon";
 import cloudIcon from "@heroicons/react/20/solid/esm/CloudIcon";
 import QuestionMarkIcon from '@/app/Components/QuestionMark';
-import Projects from "@/app/Components/Projects";
 import HomePage from "@/app/Pages/HomePage";
 
 const navigation = [
     { name: 'Billing', href: '#', icon: currencyRupeeIcon, current: true },
     { name: 'Support', href: '#', icon: UsersIcon, current: false },
-    { name: 'Settings', href: '#', icon: cogIcon, current: false },
     { name: 'API', href: '#', icon: cloudIcon, current: false },
     // { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
     // { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
@@ -104,6 +97,46 @@ export default function Example() {
                                         <nav className="flex flex-1 flex-col">
                                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
                                                 <li>
+                                                    <h1 className="text-md font-semibold text-white mb-4 ">PROJECTS</h1>
+                                                    <ul className="flex flex-col space-y-3 mb-8">
+                                                        <div className="flex">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                                                            </svg>
+                                                            <li><a href="#" className="text-white font-semibold text-sm hover:underline ml-3">First-Project</a></li>
+                                                        </div>
+                                                        <div className="flex">
+                                                            <svg
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                fill="none"
+                                                                viewBox="0 0 24 24"
+                                                                stroke="white"
+                                                                width="20"
+                                                                height="20">
+                                                                <path
+                                                                    stroke-linecap="round"
+                                                                    stroke-linejoin="round"
+                                                                    stroke-width="2"
+                                                                    d="M12 4v16m8-8H4"/>
+                                                            </svg>
+                                                            <li><a href="#" className="text-white font-semibold text-sm hover:underline ml-3">New Project</a></li>
+                                                        </div>
+                                                    </ul>
+                                                    <h1 className="text-md font-semibold text-white mb-4 ">MANAGE</h1>
+                                                    <ul className="flex flex-col space-y-3 mb-9">
+                                                        <li><a href="#" className="text-white font-semibold text-sm hover:underline">Apps</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Droplets</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Functions</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Kubernetes</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Volumes Block Storage</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Databases</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Spaces Object Storage</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Container Registry</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Images</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Networking</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Monitoring</a></li>
+                                                        <li><a href="#" className="text-white font-semibold text-sm  hover:underline">Add-Ons</a></li>
+                                                    </ul>
                                                     <ul role="list" className="-mx-2 space-y-1">
                                                         {navigation.map((item) => (
                                                             <li key={item.name}>
@@ -140,11 +173,10 @@ export default function Example() {
                                                                             ? 'bg-indigo-700 text-white'
                                                                             : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
                                                                         'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                                                    )}
-                                                                >
-                                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
-                                    {team.initial}
-                                  </span>
+                                                                    )}>
+                                                                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg border border-indigo-400 bg-indigo-500 text-[0.625rem] font-medium text-white">
+                                                                        {team.initial}
+                                                                      </span>
                                                                     <span className="truncate">{team.name}</span>
                                                                 </a>
                                                             </li>
@@ -154,12 +186,10 @@ export default function Example() {
                                                 <li className="mt-auto">
                                                     <a
                                                         href="#"
-                                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                                                    >
+                                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
                                                         <Cog6ToothIcon
                                                             className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                                                            aria-hidden="true"
-                                                        />
+                                                            aria-hidden="true"/>
                                                         Settings
                                                     </a>
                                                 </li>

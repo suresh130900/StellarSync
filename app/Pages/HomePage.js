@@ -1,3 +1,6 @@
+'use client'
+import Services_List from "@/app/Pages/Services_List";
+
 export default function HomePage() {
     return(
         <div>
@@ -21,6 +24,41 @@ export default function HomePage() {
                     </div>
                 </button>
                 </div>
+            </div>
+            <div className="mt-5">
+                <span className="isolate inline-flex rounded-md shadow-sm">
+                    <button
+                        type="button"
+                        className="relative inline-flex items-center rounded-l-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:z-10">
+                        Resources
+                    </button>
+                    <button
+                        type="button"
+                        className="relative -ml-px inline-flex items-center bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:z-10">
+                        Activity
+                    </button>
+                    <button
+                        type="button"
+                        className="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:z-10">
+                        Settings
+                    </button>
+                </span>
+            </div>
+            <div className="md:ml-3 -ml-8">
+                <h1 className="text-md font-semibold mt-3">Domains(1)</h1>
+                <button
+                    type="button"
+                    className="rounded-md bg-white md:w-full sm:w-full px-3.5 mt-3 py-2.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <div className="flex">
+                        <h3 className="text-sm">foxlo.tech</h3>
+                        <h2 className="text-sm font-light md:ml-64 ml-3">1 A / 2 CNAME / 2 MX / 3 NS / 1 SOA / 1 SRV / 2 TXT</h2>
+                        <h2 className="md:ml-96 ml-3">...</h2>
+                    </div>
+                </button>
+            </div>
+            <div className="md:ml-3 -ml-8 mt-10">
+                <h1 className="font-semibold">Create Something New</h1>
+                <Services_List />
             </div>
         </div>
     );
