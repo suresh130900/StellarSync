@@ -1,3 +1,4 @@
+'use client'
 
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
@@ -12,8 +13,9 @@ from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import currencyRupeeIcon from "@heroicons/react/20/solid/esm/CurrencyRupeeIcon";
 import cloudIcon from "@heroicons/react/20/solid/esm/CloudIcon";
-import QuestionMarkIcon from '@/app/Components/QuestionMark';
+import QuestionMarkIcon from '@/app/Components/Create_Dropdown';
 import HomePage from "@/app/Pages/HomePage";
+import Create_dropdown from "@/app/Components/Create_Dropdown";
 
 const navigation = [
     { name: 'Billing', href: '#', icon: currencyRupeeIcon, current: true },
@@ -53,8 +55,7 @@ export default function Example() {
                             enterTo="opacity-100"
                             leave="transition-opacity ease-linear duration-300"
                             leaveFrom="opacity-100"
-                            leaveTo="opacity-0"
-                        >
+                            leaveTo="opacity-0">
                             <div className="fixed inset-0 bg-gray-900/80" />
                         </Transition.Child>
 
@@ -66,8 +67,7 @@ export default function Example() {
                                 enterTo="translate-x-0"
                                 leave="transition ease-in-out duration-300 transform"
                                 leaveFrom="translate-x-0"
-                                leaveTo="-translate-x-full"
-                            >
+                                leaveTo="-translate-x-full">
                                 <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
                                     <Transition.Child
                                         as={Fragment}
@@ -76,8 +76,7 @@ export default function Example() {
                                         enterTo="opacity-100"
                                         leave="ease-in-out duration-300"
                                         leaveFrom="opacity-100"
-                                        leaveTo="opacity-0"
-                                    >
+                                        leaveTo="opacity-0">
                                         <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                                             <button type="button" className="-m-2.5 p-2.5" onClick={() => setSidebarOpen(false)}>
                                                 <span className="sr-only">Close sidebar</span>
@@ -91,8 +90,7 @@ export default function Example() {
                                             <img
                                                 className="h-8 w-auto"
                                                 src="https://tailwindui.com/img/logos/mark.svg?color=white"
-                                                alt="Your Company"
-                                            />
+                                                alt="Your Company"/>
                                         </div>
                                         <nav className="flex flex-1 flex-col">
                                             <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -309,12 +307,10 @@ export default function Example() {
                                 <li className="mt-auto">
                                     <a
                                         href="#"
-                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                                    >
+                                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
                                         <Cog6ToothIcon
                                             className="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white"
-                                            aria-hidden="true"
-                                        />
+                                            aria-hidden="true"/>
                                         Settings
                                     </a>
                                 </li>
@@ -340,27 +336,15 @@ export default function Example() {
                                 </label>
                                 <MagnifyingGlassIcon
                                     className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
-                                    aria-hidden="true"
-                                />
+                                    aria-hidden="true"/>
                                 <input
                                     id="search-field"
                                     className="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm"
                                     placeholder="Search..."
                                     type="search"
-                                    name="search"
-                                />
+                                    name="search"/>
                             </form>
                             <div className="flex items-center gap-x-4 lg:gap-x-6">
-                                <div>
-                                    <button
-                                        type="submit"
-                                        className="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                        Create
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
                                 <button type="button" className="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                                     <span className="sr-only">View Support</span>
                                     <QuestionMarkIcon className="h-6 w-6" aria-hidden= "true"/>
@@ -400,8 +384,7 @@ export default function Example() {
                                         enterTo="transform opacity-100 scale-100"
                                         leave="transition ease-in duration-75"
                                         leaveFrom="transform opacity-100 scale-100"
-                                        leaveTo="transform opacity-0 scale-95"
-                                    >
+                                        leaveTo="transform opacity-0 scale-95">
                                         <Menu.Items className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
@@ -411,8 +394,7 @@ export default function Example() {
                                                             className={classNames(
                                                                 active ? 'bg-gray-50' : '',
                                                                 'block px-3 py-1 text-sm leading-6 text-gray-900'
-                                                            )}
-                                                        >
+                                                            )}>
                                                             {item.name}
                                                         </a>
                                                     )}
