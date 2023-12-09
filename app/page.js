@@ -1,11 +1,9 @@
-'use client'
+import Login from "@/app/login/page";
 
-import Example from "@/app/Pages/SidePanel";
-
-export default function Home(){
+export default function Index(){
     return(
         <div>
-            <Example />
+            <Login />
         </div>
     );
 }
