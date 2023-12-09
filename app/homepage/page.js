@@ -1,9 +1,11 @@
 'use client'
 import Services_List from "@/app/Components/Services_List";
+import SidePanel from "@/app/Components/sidepanel";
 
 export default function HomePage() {
     return(
         <div>
+            <SidePanel >
             <div className="flex">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="blue" className="md:w-24 w-24 h-24 md:ml-0 -ml-10">
                     <path d="M5.507 4.048A3 3 0 017.785 3h8.43a3 3 0 012.278 1.048l1.722 2.008A4.533 4.533 0 0019.5 6h-15c-.243 0-.482.02-.715.056l1.722-2.008z" />
@@ -60,6 +62,7 @@ export default function HomePage() {
                 <h1 className="font-semibold">Create Something New</h1>
                 <Services_List />
             </div>
+            </SidePanel>
         </div>
     );
 }

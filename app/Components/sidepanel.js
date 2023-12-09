@@ -1,3 +1,5 @@
+'use client'
+
 import { Fragment, useState } from 'react'
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
@@ -13,11 +15,11 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import HomePage from './HomePage'
+import Page from '../homepage/page'
 import Create_Dropdown from "@/app/Components/Create_Dropdown";
 
 const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+    { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
     { name: 'Team', href: '#', icon: UsersIcon, current: false },
     { name: 'Projects', href: '#', icon: FolderIcon, current: false },
     { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
@@ -38,11 +40,12 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function SidePanel({children}) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
         <>
+
             <div>
                 <Transition.Root show={sidebarOpen} as={Fragment}>
                     <Dialog as="div" className="relative z-50 lg:hidden" onClose={setSidebarOpen}>
@@ -333,15 +336,14 @@ export default function Example() {
                             </div>
                         </div>
                     </div>
-
                     <main className="py-10">
                         <div className="px-4 sm:px-6 lg:px-8">
-
-
-                            <HomePage/>
+                            {/*<Page/>*/}
+                            {children}
                         </div>
                     </main>
                 </div>
+
             </div>
         </>
     )
