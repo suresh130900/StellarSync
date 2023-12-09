@@ -1,5 +1,5 @@
 'use client'
-import Services_List from "@/app/Pages/Services_List";
+import Services_List from "@/app/Components/Services_List";
 
 export default function HomePage() {
     return(
