@@ -5,11 +5,20 @@ export default function Page() {
     return (
         <div>
             <SidePanel>
+                <div>
+                    <h1 className="font-bold text-3xl text-gray-900">
+                        Host Your Docker Image
+                    </h1>
+                    <h2 className="font-semibold text-md text-gray-900 mt-2">
+                        Not to Worry about server management and get your own Domain as you host your Application
+                    </h2>
+                </div>
+                <div className="flex">
                 <form>
-                    <h2 className="flex font-bold leading-7 text-3xl text-gray-900">Docker Form</h2>
+                    <h2 className="flex font-semibold leading-7 text-sm text-gray-900 mt-8">All we need is Your Docker Image and a Port</h2>
                     <div className="sm:col-span-4 flex-col">
-                        <div className="mt-10 mb-10">
-                            <label htmlFor="server" className="block text-lg font-semibold leading-6 text-gray-900">
+                        <div className="">
+                            <label htmlFor="server" className="block text-md mt-3 font-medium leading-6 text-gray-900">
                                 Server
                             </label>
                             <div className="flex rounded-md shadow-sm ring-1 mt-3 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -24,7 +33,7 @@ export default function Page() {
                             </div>
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="port" className="block text-lg font-semibold leading-6 text-gray-900">
+                            <label htmlFor="port" className="block text-md font-medium mt-6 leading-6 text-gray-900">
                                 Port
                             </label>
                             <div className="flex rounded-md shadow-sm ring-1 mt-3 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
@@ -48,6 +57,12 @@ export default function Page() {
                         </button>
                     </div>
                 </form>
+                    <div className="ml-64">
+                        <video className="w-200 h-100">
+                            <source src="/assets/videos/docker_gif.webm"/>
+                        </video>
+                    </div>
+                </div>
             </SidePanel>
         </div>
     );
