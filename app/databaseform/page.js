@@ -1,5 +1,6 @@
 'use client'
 import SidePanel from "@/app/Components/sidepanel";
+import Image from 'next/image';
 
 export default function Page() {
     return (
@@ -18,52 +19,52 @@ export default function Page() {
                                     Choose a database engine
                                 </label>
 
-                                <div class="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
+                                <div className="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
                                     <input 
                                         id="mongodb" 
                                         type="radio" 
                                         value=""
                                         name="database" 
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     />
-                                    <label for="mongodb" class="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
-                                      <img class="h-8" src="/assets/images/mongodb-logo-icon.png" alt="mongodb-img"/>MongoDB
+                                    <label htmlFor="mongodb" className="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
+                                      <Image src="/assets/images/mongodb-logo-icon.png" height={40} width={40} alt="mongodb-img"/>MongoDB
                                     </label>
                                 </div>
-                                <div class="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
+                                <div className="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
                                     <input 
                                         id="postgresql" 
                                         type="radio" 
                                         value="" 
                                         name="database" 
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     />
-                                    <label for="postgresql" class="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
-                                    <img class="h-8 px-1 pr-2" src="/assets/images/postgresql-logo-icon.png" alt="postgresql-img"/>PostgreSQL
+                                    <label htmlFor="postgresql" className="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
+                                    <Image height={40} width={40} src="/assets/images/postgresql-logo-icon.png" alt="postgresql-img"/>PostgreSQL
                                     </label>
                                 </div>
-                                <div class="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
+                                <div className="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
                                     <input 
                                         id="mysql" 
                                         type="radio" 
                                         value="" 
                                         name="database" 
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     />
-                                    <label for="mysql" class="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
-                                        <img class="h-8 px-1 pr-2" src="/assets/images/mysql-logo-icon.png" alt="mysql-img"/>MySQL
+                                    <label htmlFor="mysql" className="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
+                                        <Image height={40} width={40} src="/assets/images/mysql-logo-icon.png" alt="mysql-img"/>MySQL
                                     </label>
                                 </div>
-                                <div class="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
+                                <div className="flex items-center mt-4 mb-4 py-4 ps-2 border border-gray-200 rounded dark:border-blue-700">
                                     <input 
                                         id="redis" 
                                         type="radio" 
                                         value="" 
                                         name="database" 
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     />
-                                    <label for="redis" class="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
-                                        <img class="h-8" src="/assets/images/redis-logo-icon.png" alt="redis-img"/>Redis
+                                    <label htmlFor="redis" className="flex items-center ms-2 text-sm font-medium text-gray-900 dark:text-blue-800">
+                                        <Image height={50} width={50} src="/assets/images/redis-logo-icon.png" alt="redis-img"/>Redis
                                     </label>
                                 </div>
 
