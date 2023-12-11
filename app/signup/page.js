@@ -2,8 +2,43 @@
 'use client'
 
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from 'next/navigation'
+import React from "react";
 
 export default function Signup() {
+
+    const [signup, setSignup] = React.useState(null);
+
+    const [name, setName] = React.useState(null);
+    const [email, setEmail] = React.useState(null);
+    const [password, setPassword] = React.useState(null);
+
+    const router = useRouter()
+    function createSignup() {
+
+        const options = {
+            method: 'POST',
+            url: 'https://apistellarsync.foxlo.tech/api/customer/signup',
+            headers: {'Content-Type': 'application/json'},
+            data: {name: name, emailId: email, password: password}
+        };
+
+        axios.request(options).then(function (response) {
+            const data = JSON.parse(JSON.stringify(response.data))
+            console.log(data.error)
+            if (data.error === false)
+            {
+                router.push("/homepage");
+            }
+            else if(data.error === true) {
+                console.log("Customer Already Exits");
+            }
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
     return(
         <>
             <div style={{backgroundImage: `url('/assets/images/Clouds.png')`}}
@@ -45,7 +80,7 @@ export default function Signup() {
                                     </div>
                             </div>
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                                <form className="space-y-6" action="#" method="POST">
+                                <div className="space-y-6">
                                     <div>
                                         <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
                                             Full name
@@ -56,6 +91,10 @@ export default function Signup() {
                                                 name="name"
                                                 id="name"
                                                 required
+                                                onChange={(e) => {
+                                                    setName(e.target.value)
+                                                    console.log(name)
+                                                }}
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 placeholder="   Enter a Name"
                                             />
@@ -73,6 +112,10 @@ export default function Signup() {
                                                 type="email"
                                                 autoComplete="email"
                                                 required
+                                                onChange={(e) => {
+                                                    setEmail(e.target.value)
+                                                    console.log(email)
+                                                }}
                                                 placeholder="   Enter your Email Address"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -91,6 +134,10 @@ export default function Signup() {
                                                 type="password"
                                                 autoComplete="current-password"
                                                 required
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value)
+                                                    console.log(password)
+                                                }}
                                                 placeholder="   Create a Password"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
@@ -98,13 +145,13 @@ export default function Signup() {
                                     </div>
                                     <div>
                                         <button
-                                            type="submit"
+                                            onClick={createSignup}
                                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
                                             Sign Up
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

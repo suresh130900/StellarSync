@@ -1,3 +1,5 @@
+'use client'
+
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 
 const projects = [
