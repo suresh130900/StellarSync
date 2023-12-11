@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 
-export default function Login() {
+export default function Signup() {
     return(
         <>
             <div style={{backgroundImage: `url('/assets/images/Clouds.png')`}}
@@ -12,17 +12,20 @@ export default function Login() {
                     <div className="bg-gray-200 rounded-l-3xl hidden md:block">
                         <div className="h-44 w-96 justify-center ml-10">
                             <h1 className="text-3xl font-semibold mt-10 text-gray-800 flex justify-start">
-                                Hello,
+                                Try StellarSync
                             </h1>
-                            <h1 className="text-3xl font-semibold text-gray-800 flex justify-start">
-                                Welcome Back
-                            </h1>
+                            <ul className="mt-3 text-md text-gray-600">
+                                <li className="flex justify-start">DataBase Hosting</li>
+                                <li className="flex justify-start">Docker Container Hosting</li>
+                                <li className="flex justify-start">Authentication Service</li>
+                                <li className="flex justify-start">API Creation Service</li>
+                            </ul>
                         </div>
-                        <div className="h-96 w-96 rounded-l-3xl" style={{backgroundImage: `url('/assets/images/Login_image.svg')`}}></div>
+                        <div className="h-96 w-96 rounded-l-3xl" style={{backgroundImage: `url('/assets/images/Humans.png')`}}></div>
                     </div>
                     <div className="bg-gray-50 md:rounded-r-3xl">
                         <div className="md:h-44 h-fit w-96 md:ml-10 ml-0 md:mr-10 mr-0">
-                            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-5">
+                            <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-7">
                                 <div className="flex justify-center mr-10">
                                     <img
                                         className="md:h-10 h-10 md:w-10 mt-4 w-10"
@@ -34,16 +37,31 @@ export default function Login() {
                                     </h2>
                                 </div>
                                 <h2 className="mt-4 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
-                                    Login into your account
+                                    Create your account
                                 </h2>
-                                <div className="flex flex-1 items-center px-2 justify-center">
-                                    {/* eslint-disable-next-line react/no-unescaped-entities */}
-                                    <h1 className="md:text-md text-sm text-gray-900 mr-3">Don't have an Account?</h1>
-                                    <Link href="/signup" className="text-blue-500 font-mono md:text-md text-sm mt-1 underline justify-end">Sign Up</Link>
-                                </div>
+                                    <div className="flex flex-1 items-center px-2 justify-center">
+                                        <h1 className="md:text-md text-sm text-gray-900">Already have an Account?</h1>
+                                        <Link href="/login" className="text-blue-500 font-mono md:text-md text-sm mt-1 underline justify-end">Sign In</Link>
+                                    </div>
                             </div>
                             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                                 <form className="space-y-6" action="#" method="POST">
+                                    <div>
+                                        <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+                                            Full name
+                                        </label>
+                                        <div className="mt-2">
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                id="name"
+                                                required
+                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                placeholder="   Enter a Name"
+                                            />
+                                        </div>
+                                    </div>
+
                                     <div>
                                         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                             Email address
