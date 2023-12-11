@@ -20,6 +20,7 @@ export default function Login() {
                         </div>
                         <div className="h-96 w-96 rounded-l-3xl" style={{backgroundImage: `url('/assets/images/Login_image.svg')`}}></div>
                     </div>
+
                     <div className="bg-gray-50 md:rounded-r-3xl">
                         <div className="md:h-44 h-fit w-96 md:ml-10 ml-0 md:mr-10 mr-0">
                             <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-5">
