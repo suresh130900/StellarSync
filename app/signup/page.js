@@ -4,7 +4,7 @@
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from 'next/navigation'
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 
 // export default function Signup() {
     // const [signup, setSignup] = React.useState(null);
@@ -76,6 +76,7 @@ import React, {useEffect, useState} from "react";
         const [name, setName] = React.useState(null);
         const [email, setEmail] = React.useState(null);
         const [password, setPassword] = React.useState(null);
+        const [confirmPassword, setConfirmPassword] = React.useState(null);
         // const [formData, setFormData] = useState({
         //     name: '',
         //     email: '',
@@ -85,14 +86,15 @@ import React, {useEffect, useState} from "react";
             name: '',
             email: '',
             password: '',
+            confirmPassword: '',
         });
-        const [isFormValid, setIsFormValid] = useState(false);
+        //const [isFormValid, setIsFormValid] = useState(false);
 
         const router = useRouter();
 
+        const newErrors = { ...errors };
         const validateForm = () => {
             let isValid = true;
-            const newErrors = { ...errors };
 
             // Validate username
             if (!name || name.trim() === '') {
@@ -123,6 +125,15 @@ import React, {useEffect, useState} from "react";
                 newErrors.email = '';
             }
 
+            //validating confirm password
+            if(!confirmPassword || confirmPassword.trim() === ''){
+                newErrors.confirmPassword = 'Please Confirm Password';
+                isValid = false
+            }
+            else if(confirmPassword !== password){
+                newErrors.confirmPassword = 'Password Does not Match';
+                isValid = false
+            }
             setErrors(newErrors);
             return isValid;
         };
@@ -155,29 +166,37 @@ import React, {useEffect, useState} from "react";
         //     setIsFormValid(Object.keys(errors).length === 0);
         // };
         // Submit
-        const handleSubmit = (e) => {
-            if (validateForm()) {
-                const options = {
-                    method: 'POST',
-                    url: 'https://apistellarsync.foxlo.tech/api/customer/signup',
-                    headers: {'Content-Type': 'application/json'},
-                    data: {name: name, emailId: email, password: password}
-                };
-                axios.request(options).then(function (response) {
-                    const data = JSON.parse(JSON.stringify(response.data))
-                    console.log(data.error)
-                    if (data.error === false) {
-                        router.push("/homepage");
-                    } else if (data.error === true) {
-                        console.log("Customer Already Exits");
-                    }
-                    console.log(response.data);
-                }).catch(function (error) {
-                    console.error(error);
-                });
-            } else {
-                console.log('Form has errors. Please correct them.');
-            }
+        const handleSubmit = () => {
+            //try {
+                if (validateForm()) {
+                    const options = {
+                        method: 'POST',
+                        url: 'https://apistellarsync.foxlo.tech/api/customer/signup',
+                        headers: {'Content-Type': 'application/json'},
+                        data: {name: name, emailId: email, password: password}
+                    };
+                    axios.request(options).then(function (response) {
+                        const data = JSON.parse(JSON.stringify(response.data))
+                        // console.log(data)
+                        // console.log(data.error)
+                        console.log(response.status)
+                        if (response.status === 201 && data.error === false) {
+                            //console.log(data.message)
+                            router.push("/homepage");
+                        } else if (response.status === 400) {
+                            console.log("Customer Already Exits");
+                        }
+                        else {
+                            console.log("there are some error in APi calling and the status code is: ", response.status)
+                        }
+                    })
+                } else {
+                    console.log('Form has errors. Please correct them.');
+                }
+            // }
+            // catch (error) {
+            //     console.log("There was some issue-------------------------------------------------");
+            // }
         };
         // const handleChange = (e) => {
         //     const { name, value } = e.target;
@@ -197,7 +216,7 @@ import React, {useEffect, useState} from "react";
                      className="min-h-full justify-center px-6 py-12 lg:px-8">
                     <div className="flex justify-center">
                         <div className="bg-gray-200 rounded-l-3xl hidden md:block">
-                            <div className="h-44 w-96 justify-center ml-10">
+                            <div className="h-64 w-96 justify-center ml-10">
                                 <h1 className="text-3xl font-semibold mt-10 text-gray-800 flex justify-start">
                                     Try StellarSync
                                 </h1>
@@ -247,8 +266,6 @@ import React, {useEffect, useState} from "react";
                                                     name="name"
                                                     id="name"
                                                     required
-                                                    // value={name}
-                                                    // onChange={handleChange}
                                                     onChange={(e) => {
                                                         setName(e.target.value)
                                                         console.log(name)
@@ -272,8 +289,7 @@ import React, {useEffect, useState} from "react";
                                                     type="email"
                                                     autoComplete="email"
                                                     required
-                                                    value={email}
-                                                    // onChange={handleChange}
+                                                    //value={email}
                                                     onChange={(e) => {
                                                         setEmail(e.target.value)
                                                         console.log(email)
@@ -298,8 +314,7 @@ import React, {useEffect, useState} from "react";
                                                     type="password"
                                                     autoComplete="current-password"
                                                     required
-                                                    value={password}
-                                                    // onChange={handleChange}
+                                                    //value={password}
                                                     onChange={(e) => {
                                                         setPassword(e.target.value)
                                                         console.log(password)
@@ -308,6 +323,31 @@ import React, {useEffect, useState} from "react";
                                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                                 />
                                                 {errors.password && <p className="text-red-600">{errors.password}</p>}
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center justify-between">
+                                                <label htmlFor="confirmPassword"
+                                                       className="block text-sm font-medium leading-6 text-gray-900">
+                                                    Confirm Password
+                                                </label>
+                                            </div>
+                                            <div className="mt-2">
+                                                <input
+                                                    id="confirmPassword"
+                                                    name="confirmPassword"
+                                                    type="password"
+                                                    autoComplete="current-password"
+                                                    required
+                                                    //value={confirmPassword}
+                                                    onChange={(e) => {
+                                                        setConfirmPassword(e.target.value)
+                                                        console.log(confirmPassword)
+                                                    }}
+                                                    placeholder="   Create a Password"
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                />
+                                                {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword}</p>}
                                             </div>
                                         </div>
                                         <div>
