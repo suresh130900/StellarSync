@@ -241,11 +241,11 @@ import { CheckIcon } from '@heroicons/react/24/outline'
                                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                             alt="Your Company"
                                         />
-                                        <h2 className="md:mt-5 mt-5 md:ml-5 ml-2 md:text-3xl text-md font-bold leading-9 tracking-tight text-gray-900">
+                                        <h2 className="md:mt-4 mt-4 md:ml-5 ml-2 md:text-3xl text-md font-bold leading-9 tracking-tight text-gray-900">
                                             Stellar Sync
                                         </h2>
                                     </div>
-                                    <h2 className="mt-4 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
+                                    <h2 className="mt-2 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
                                         Create your account
                                     </h2>
                                     <div className="flex flex-1 items-center px-2 justify-center">
@@ -255,7 +255,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
                                             In</Link>
                                     </div>
                                 </div>
-                                <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+                                <div className="mt-4 sm:mx-auto sm:w-full sm:max-w-sm">
                                     <div className="space-y-6">
                                         <div>
                                             <label htmlFor="name"
