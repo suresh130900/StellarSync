@@ -2,8 +2,81 @@
 'use client'
 
 import Link from "next/link";
+import axios from "axios";
+import React from "react";
+import {useRouter} from "next/navigation";
 
 export default function Login() {
+
+    const [email, setEmail] = React.useState(null);
+    const [password, setPassword] = React.useState(null);
+
+    const router = useRouter();
+    // const handleSubmitLogin = () => {
+    //     try{
+    //         const options = {
+    //             method: 'POST',
+    //             url: 'https://apistellarsync.foxlo.tech/api/customer/login',
+    //             headers: {'Content-Type': 'application/json'},
+    //             data: {
+    //                 emailId: 'Example@gmail.com',
+    //                 password: 'test',
+    //                 token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsSWQiOiJFeGFtcGxlQGdtYWlsLmNvbSJ9LCJpYXQiOjE3MDIyOTY1NDUsImV4cCI6MTczMzg1NDE0NX0.zUr98smXMXvqXlijTNq3OjuxHe1Jsh9PGfvLHKDtM-w'
+    //             }
+    //         };
+    //         axios.request(options).then(function (response) {
+    //             const data = JSON.parse(JSON.stringify(response.data))
+    //             if(response.status === 201 && data.error === false){
+    //                 router.push('/homepage');
+    //                 console.log(response.data);
+    //             }
+    //             else if(response.status === 400 && data.error === true){
+    //                 console.log("Something is wrong");
+    //             }
+    //         }).catch(function (error) {
+    //             console.error(error);
+    //         });
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //     }
+    // }
+
+    const handleSubmitLogin = async () => {
+        const apiUrl = 'https://apistellarsync.foxlo.tech/api/customer/login';
+
+        const inputData = {
+            emailId: 'Example@gmail.com',
+            password: 'test',
+            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsSWQiOiJFeGFtcGxlQGdtYWlsLmNvbSJ9LCJpYXQiOjE3MDIyOTY1NDUsImV4cCI6MTczMzg1NDE0NX0.zUr98smXMXvqXlijTNq3OjuxHe1Jsh9PGfvLHKDtM-w',
+        };
+
+        try {
+            const response = await axios.post(apiUrl, inputData);
+            console.log('API Response:', response.data);
+            const data = JSON.parse(JSON.stringify(response.data))
+            console.log(data.error)
+            if(data.error === false && response.status === 201){
+                console.log("You can go on the next page")
+            }
+            else {
+                console.log("Something is wrong");
+            }
+            // Handle the response as needed
+        } catch (error) {
+            if(error.response.status === 400){
+                console.log("Api error");
+            }
+            else if(error.response.status === 403){
+                console.log("PASSWORD FAILED");
+            }
+            else{
+                console.error('API Request Error:', error);
+            }
+            // Handle errors as needed
+        }
+    };
+
     return(
         <>
             <div style={{backgroundImage: `url('/assets/images/Clouds.png')`}}
@@ -81,6 +154,7 @@ export default function Login() {
                                     </div>
                                     <div>
                                         <button
+                                            onClick={handleSubmitLogin}
                                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
                                             Sign Up
