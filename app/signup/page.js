@@ -7,73 +7,7 @@ import { useRouter } from 'next/navigation'
 import React from "react";
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
 
-// export default function Signup() {
-    // const [signup, setSignup] = React.useState(null);
-    // const [name, setName] = React.useState(null);
-    // const [email, setEmail] = React.useState(null);
-    // const [password, setPassword] = React.useState(null);
-    // const [errors, setErrors] = React.useState({});
-    // const [isFormValid, setIsFormValid] = React.useState(false);
-    // const router = useRouter()
-    //
-    // const App = () => {
-    //         const [name, setName] = useState('');
-    //         const [email, setEmail] = useState('');
-    //         const [password, setPassword] = useState('');
-    //         const [errors, setErrors] = useState({});
-    //         const [isFormValid, setIsFormValid] = useState(false);
-    //     useEffect(() => {
-    //             validateForm();
-    //         }, [name, email, password]);
-    //         const validateForm = () => {
-    //             let errors = {};
-    //
-    //             if (!name) {
-    //                 errors.name = 'Name is required.';
-    //             }
-    //         }
-    //             if (!email) {
-    //                 errors.email = 'Email is required.';
-    //             } else if (!/\S+@\S+\.\S+/.test(email)) {
-    //                 errors.email = 'Email is invalid.';
-    //             }
-    //
-    //             if (!password) {
-    //                 errors.password = 'Password is required.';
-    //             } else if (password.length < 6) {
-    //                 errors.password = 'Password must be at least 6 characters.';
-    //             }
-    //
-    //             setErrors(errors);
-    //             setIsFormValid(Object.keys(errors).length === 0);
-    //     };
-    //
-    //     function createSignup() {
-    //
-    //     const options = {
-    //         method: 'POST',
-    //         url: 'https://apistellarsync.foxlo.tech/api/customer/signup',
-    //         headers: {'Content-Type': 'application/json'},
-    //         data: {name: name, emailId: email, password: password}
-    //     };
-    //
-    //     axios.request(options).then(function (response) {
-    //         const data = JSON.parse(JSON.stringify(response.data))
-    //         console.log(data.error)
-    //         if (data.error === false)
-    //         {
-    //             router.push("/homepage");
-    //         }
-    //         else if(data.error === true) {
-    //             console.log("Customer Already Exits");
-    //         }
-    //         console.log(response.data);
-    //     }).catch(function (error) {
-    //         console.error(error);
-    //     });
-    // }
 
     const App = () => {
         const [name, setName] = React.useState(null);
@@ -139,34 +73,6 @@ import { CheckIcon } from '@heroicons/react/24/outline'
             return isValid;
         };
 
-
-        // useEffect(() => {
-        //     validateForm();
-        // }, [name, email, password]);
-        // Validate form
-        // const validateForm = () => {
-        //     let errors = {};
-        //
-        //     if (!name) {
-        //         errors.name = 'Name is required.';
-        //     }
-        //
-        //     if (!email) {
-        //         errors.email = 'Email is required.';
-        //     } else if (!/\S+@\S+\.\S+/.test(email)) {
-        //         errors.email = 'Email is invalid.';
-        //     }
-        //
-        //     if (!password) {
-        //         errors.password = 'Password is required.';
-        //     } else if (password.length < 6) {
-        //         errors.password = 'Password must be at least 6 characters.';
-        //     }
-        //
-        //     setErrors(errors);
-        //     setIsFormValid(Object.keys(errors).length === 0);
-        // };
-        // Submit
         const handleSubmit = () => {
             //try {
                 if (validateForm()) {
@@ -200,17 +106,6 @@ import { CheckIcon } from '@heroicons/react/24/outline'
                     console.log('Form has errors. Please correct them.');
                 }
         };
-        // const handleChange = (e) => {
-        //     const { name, value } = e.target;
-        //
-        //     // Avoid directly logging or stringifying the entire event object
-        //     console.log(`Updating ${name} with value:`, value);
-        //
-        //     setFormData({
-        //         ...formData,
-        //         [name]: value,
-        //     });
-        // };
 
         return (
             <>
