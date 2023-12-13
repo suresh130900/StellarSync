@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import React from "react";
 import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Cookies from 'js-cookie';
 
 
     const App = () => {
@@ -90,6 +91,9 @@ import { Dialog, Transition } from '@headlessui/react'
                         if (response.status === 201 && data.error === false) {
                             console.log(data.message)
                             router.push("/homepage");
+                            console.log("This is me printing the token: ", data.token)
+                            Cookies.set("myJwtToken", data.token, {secure: true, expires: 365});
+                            //return {token : data.token};;
                         }
                         else {
                             console.log("there are some error in APi calling and the status code is: ", response.status)
@@ -106,6 +110,12 @@ import { Dialog, Transition } from '@headlessui/react'
                     console.log('Form has errors. Please correct them.');
                 }
         };
+
+        // const signup = ({ token }) => {
+        //     // Store the token in a cookie
+        //     Cookies.set('myTokenCookie', token, { secure: true, expires: 365 }); // Set secure to true for HTTPS
+        //     console.log(token);
+        // };
 
         return (
             <>

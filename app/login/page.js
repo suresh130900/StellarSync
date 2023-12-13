@@ -4,12 +4,17 @@
 import Link from "next/link";
 import axios from "axios";
 import React from "react";
+import { Fragment, useState } from 'react'
 import {useRouter} from "next/navigation";
+import Cookies from 'js-cookie';
+import {Dialog, Transition} from "@headlessui/react";
 
 export default function Login() {
 
-    const [email, setEmail] = React.useState(null);
+    const [loginEmail, setLoginEmail] = React.useState(null);
     const [password, setPassword] = React.useState(null);
+    const [open, setOpen] = useState(false);
+    const [passOpen, setPassOpen] = useState(false)
 
     const router = useRouter();
     // const handleSubmitLogin = () => {
@@ -42,33 +47,88 @@ export default function Login() {
     //     }
     // }
 
+    const inputData = {
+        emailId: loginEmail,
+        password: password,
+        token: Cookies.get('myJwtToken'),
+    };
+    console.log(Cookies.get('myJwtToken'))
+
+    const [errors, setErrors] = useState({
+        loginEmail: '',
+        password: '',
+        ApiError: '',
+    });
+
+    const newErrors = { ...errors };
+
+    const validateLogin = () => {
+        let isValid = true;
+
+        // Validate email
+        if (!loginEmail || loginEmail.trim() === '') {
+            newErrors.loginEmail = 'Email is required';
+            isValid = false;
+        } else if (
+            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(loginEmail)
+        ) {
+            newErrors.loginEmail = 'Invalid email address';
+            isValid = false;
+        } else {
+            newErrors.loginEmail = '';
+        }
+
+        // Validate password
+        if (!password || password.trim() === '') {
+            newErrors.password = 'Password is required';
+            isValid = false;
+        } else {
+            newErrors.password = '';
+        }
+
+        setErrors(newErrors);
+        return isValid;
+    };
+
     const handleSubmitLogin = async () => {
         const apiUrl = 'https://apistellarsync.foxlo.tech/api/customer/login';
 
-        const inputData = {
-            emailId: 'Example@gmail.com',
-            password: 'test',
-            token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsSWQiOiJFeGFtcGxlQGdtYWlsLmNvbSJ9LCJpYXQiOjE3MDIyOTY1NDUsImV4cCI6MTczMzg1NDE0NX0.zUr98smXMXvqXlijTNq3OjuxHe1Jsh9PGfvLHKDtM-w',
-        };
-
         try {
-            const response = await axios.post(apiUrl, inputData);
-            console.log('API Response:', response.data);
-            const data = JSON.parse(JSON.stringify(response.data))
-            console.log(data.error)
-            if(data.error === false && response.status === 201){
-                console.log("You can go on the next page")
+            if(validateLogin()){
+                console.log(Cookies.get('myJwtToken'));
+                const response = await axios.post(apiUrl, inputData);
+                console.log('API Response:', response.data);
+                const data = JSON.parse(JSON.stringify(response.data))
+                console.log(data.error)
+                if(data.error === false){
+                    router.push('/homepage');
+                    console.log("You can go on the next page")
+                }
+                else {
+                    console.log("Something is wrong");
+                }
             }
             else {
-                console.log("Something is wrong");
+                console.log("The form has some errors")
             }
             // Handle the response as needed
         } catch (error) {
             if(error.response.status === 400){
-                console.log("Api error");
+                setOpen(true);
+                newErrors.ApiError = "Customer Does Not Exits";
+                console.log("Customer Does Not Exits");
+                console.error(error);
             }
             else if(error.response.status === 403){
+                setPassOpen(true);
+                newErrors.ApiError = "Password in Wrong"
+                console.log(error.response.data.error);
+
                 console.log("PASSWORD FAILED");
+            }
+            else if(error.response.status === 498) {
+                console.log(error.response.data.error);
+                console.log("Invalid Token");
             }
             else{
                 console.error('API Request Error:', error);
@@ -129,9 +189,14 @@ export default function Login() {
                                                 type="email"
                                                 autoComplete="email"
                                                 required
+                                                onChange={(e) => {
+                                                    setLoginEmail(e.target.value)
+                                                    console.log(loginEmail)
+                                                }}
                                                 placeholder="   Enter your Email Address"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
+                                            {errors.loginEmail && <p className="text-red-600">{errors.loginEmail}</p>}
                                         </div>
                                     </div>
                                     <div>
@@ -147,10 +212,133 @@ export default function Login() {
                                                 type="password"
                                                 autoComplete="current-password"
                                                 required
+                                                onChange={(e) => {
+                                                    setPassword(e.target.value)
+                                                    console.log(password)
+                                                }}
                                                 placeholder="   Create a Password"
                                                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                             />
+                                            {errors.password && <p className="text-red-600">{errors.password}</p>}
                                         </div>
+                                    </div>
+                                    <Transition.Root show={open} as={Fragment}>
+                                        <Dialog as="div" className="relative z-10" onClose={setOpen}>
+                                            <Transition.Child
+                                                as={Fragment}
+                                                enter="ease-out duration-300"
+                                                enterFrom="opacity-0"
+                                                enterTo="opacity-100"
+                                                leave="ease-in duration-200"
+                                                leaveFrom="opacity-100"
+                                                leaveTo="opacity-0"
+                                            >
+                                                <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                                            </Transition.Child>
+
+                                            <div className="fixed inset-0 z-10 overflow-y-auto">
+                                                <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                                    <Transition.Child
+                                                        as={Fragment}
+                                                        enter="ease-out duration-300"
+                                                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                        leave="ease-in duration-200"
+                                                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                    >
+                                                        <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                                                            <div>
+                                                                <div className="mt-3 text-center sm:mt-5">
+                                                                    <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                                                                        {errors.ApiError}
+                                                                    </Dialog.Title>
+                                                                    <div className="mt-2">
+                                                                        <p className="text-sm text-gray-500">
+                                                                            The username does not exits, please SignUp by clicking the below button
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="mt-5 sm:mt-6">
+                                                                <button
+                                                                    type="button"
+                                                                    className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                                    onClick={
+                                                                        () => {
+                                                                            setOpen(false);
+                                                                            router.push('/signup');
+                                                                        }
+                                                                    }
+                                                                >
+                                                                    Go to SignUp Page
+                                                                </button>
+                                                            </div>
+                                                        </Dialog.Panel>
+                                                    </Transition.Child>
+                                                </div>
+                                            </div>
+                                        </Dialog>
+                                    </Transition.Root>
+                                    <div>
+                                        <Transition.Root show={passOpen} as={Fragment}>
+                                            <Dialog as="div" className="relative z-10" onClose={setPassOpen}>
+                                                <Transition.Child
+                                                    as={Fragment}
+                                                    enter="ease-out duration-300"
+                                                    enterFrom="opacity-0"
+                                                    enterTo="opacity-100"
+                                                    leave="ease-in duration-200"
+                                                    leaveFrom="opacity-100"
+                                                    leaveTo="opacity-0"
+                                                >
+                                                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                                                </Transition.Child>
+
+                                                <div className="fixed inset-0 z-10 overflow-y-auto">
+                                                    <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                                                        <Transition.Child
+                                                            as={Fragment}
+                                                            enter="ease-out duration-300"
+                                                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                                                            leave="ease-in duration-200"
+                                                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                                                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                                        >
+                                                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
+                                                                <div>
+                                                                    <div className="mt-3 text-center sm:mt-5">
+                                                                        <Dialog.Title as="h3" className="text-base font-semibold leading-6 text-gray-900">
+                                                                            {errors.ApiError}
+                                                                        </Dialog.Title>
+                                                                        <div className="mt-2">
+                                                                            <p className="text-sm text-gray-500">
+                                                                                The Password entered is incorrect, Please try again
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="mt-5 sm:mt-6">
+                                                                    <button
+                                                                        type="button"
+                                                                        className="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                                                        onClick={
+                                                                            () => {
+                                                                                setPassOpen(false);
+                                                                                // router.push('/login')
+                                                                            }
+                                                                        }
+                                                                    >
+                                                                        Go Back
+                                                                    </button>
+                                                                </div>
+                                                            </Dialog.Panel>
+                                                        </Transition.Child>
+                                                    </div>
+                                                </div>
+                                            </Dialog>
+                                        </Transition.Root>
                                     </div>
                                     <div>
                                         <button
