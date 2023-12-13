@@ -50,9 +50,8 @@ export default function Login() {
     const inputData = {
         emailId: loginEmail,
         password: password,
-        token: Cookies.get('myJwtToken'),
+        //token: Cookies.get('myJwtToken'),
     };
-    console.log(Cookies.get('myJwtToken'))
 
     const [errors, setErrors] = useState({
         loginEmail: '',
@@ -95,13 +94,15 @@ export default function Login() {
 
         try {
             if(validateLogin()){
-                console.log(Cookies.get('myJwtToken'));
+                //console.log(Cookies.get('myJwtToken'));
                 const response = await axios.post(apiUrl, inputData);
-                console.log('API Response:', response.data);
+                //console.log('API Response:', response.data);
                 const data = JSON.parse(JSON.stringify(response.data))
-                console.log(data.error)
+                //console.log(data.error)
                 if(data.error === false){
                     router.push('/homepage');
+                    Cookies.set("loginCookie", data.token, {secure: true, expires : 365});
+                    //console.log(data.token);
                     console.log("You can go on the next page")
                 }
                 else {
@@ -113,7 +114,7 @@ export default function Login() {
             }
             // Handle the response as needed
         } catch (error) {
-            if(error.response.status === 400){
+            if(error.response.status === 404){
                 setOpen(true);
                 newErrors.ApiError = "Customer Does Not Exits";
                 console.log("Customer Does Not Exits");
@@ -345,7 +346,7 @@ export default function Login() {
                                             onClick={handleSubmitLogin}
                                             className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                         >
-                                            Sign Up
+                                            Login
                                         </button>
                                     </div>
                                 </div>

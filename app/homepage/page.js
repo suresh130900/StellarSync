@@ -1,8 +1,25 @@
 'use client'
 import Services_List from "@/app/Components/Services_List";
 import SidePanel from "@/app/Components/sidepanel";
+import Cookies from "js-cookie";
+import {useRouter} from "next/navigation";
+import React from "react";
 
 export default function HomePage() {
+    //validating if the cookie is saved or deleted
+    const signupCookies = Cookies.get("signupCookie");
+    console.log("This is printing from the homepage for the signup cookie",Cookies.get("signupCookie"));
+    const loginCookies = Cookies.get("loginCookie");
+    console.log("This is printing from the homepage for the login cookie",Cookies.get("loginCookie"));
+    const router = useRouter();
+
+    React.useEffect(() => {
+        if (signupCookies === null || signupCookies === undefined && loginCookies === null || loginCookies === undefined ) {
+            router.push('/login'); // Redirect to the homepage if the token exists
+        }
+    }, []);
+
+
     return(
         <div>
             <SidePanel >

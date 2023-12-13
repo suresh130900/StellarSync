@@ -15,8 +15,11 @@ import {
     XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import Page from '../homepage/page'
+
 import Create_Dropdown from "@/app/Components/Create_Dropdown";
+import Link from "next/link";
+import Cookies from "js-cookie";
+import {useRouter} from "next/navigation";
 
 const navigation = [
     { name: 'Dashboard', href: '#', icon: HomeIcon, current: false },
@@ -29,18 +32,29 @@ const navigation = [
 const teams = [
     { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
     { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-    { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
+    { id: 3, name: 'Workstation', href: '#', initial: 'W', current: false },
 ]
+
 const userNavigation = [
     { name: 'Your profile', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Sign out', href: '/login' ,action : handleSignOut},
 ]
+
+function handleSignOut(){
+    console.log(Cookies.get('signupCookie'));
+    Cookies.remove('signupCookie');
+    console.log("Deleting Cookies from Signup: ", Cookies.get('signupCookie'));
+    console.log(Cookies.get('loginCookie'));
+    Cookies.remove('loginCookie');
+    console.log("Deleting Cookies from Login: ", Cookies.get('loginCookie'));
+}
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
 export default function SidePanel({children}) {
+    const router = useRouter();
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
@@ -318,7 +332,8 @@ export default function SidePanel({children}) {
                                             {userNavigation.map((item) => (
                                                 <Menu.Item key={item.name}>
                                                     {({ active }) => (
-                                                        <a
+                                                        <Link
+                                                            onClick={() => item.action() && item.action}
                                                             href={item.href}
                                                             className={classNames(
                                                                 active ? 'bg-gray-50' : '',
@@ -326,7 +341,7 @@ export default function SidePanel({children}) {
                                                             )}
                                                         >
                                                             {item.name}
-                                                        </a>
+                                                        </Link>
                                                     )}
                                                 </Menu.Item>
                                             ))}
