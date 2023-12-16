@@ -11,7 +11,7 @@ export default function profile(){
     return(
         <div>
             <SidePanel>
-                <div className="container mx-auto mt-10 text-center">
+                <div className="container mt-10">
                     <h1 className="text-3xl font-semibold mb-5">Update Information</h1>
 
                     <div className="mb-4">
@@ -57,6 +57,7 @@ export default function profile(){
                                 className="border p-2 mb-2"
                                 placeholder="Enter your new password"
                             />
+                            <br/>
                             <input
                                 type="password"
                                 className="border p-2"
@@ -64,6 +65,15 @@ export default function profile(){
                             />
                         </div>
                     )}
+
+                    <div className="gap-x-6 mr-60">
+                        <button type="submit" className="rounded-md bg-indigo-600 mt-8 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                            Submit
+                        </button>
+                        <button type="button" className="text-sm font-semibold ml-10 mt-5 leading-6 text-gray-900">
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </SidePanel>
         </div>
