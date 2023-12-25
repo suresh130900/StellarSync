@@ -161,6 +161,7 @@ export default function profile(){
                             Cancel
                         </button>
                     </div>
+
                 </div>
             </SidePanel>
         </div>
