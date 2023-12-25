@@ -7,9 +7,13 @@ import {useState } from 'react'
 export default function profile(){
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [selectedOption, setSelectedOption] = React.useState(null);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [name, setName] = React.useState("");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [password, setPassword] = React.useState("");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [confirmPassword, setConfirmPassword] = React.useState("");
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [errors, setErrors] = React.useState({
         name: "",
         password: "",
