@@ -2,8 +2,37 @@
 import SidePanel from "@/app/Components/sidepanel";
 import FeatureListDockerForm from "@/app/Components/FeatureListDockerForm";
 import {CheckIcon} from "@heroicons/react/20/solid";
+import React from "react";
 
 export default function Page() {
+    const [image, setImage] = React.useState("");
+    const [port, setPort] = React.useState();
+    const [errors, setErrors] = React.useState({
+        image: "",
+        port: "",
+    });
+
+    const handleClick = () => {
+        console.log("In handle click");
+        const errorMessage = {image: "", port: ""}
+
+        if(!image.trim()){
+            errorMessage.image = "Please enter a valid image";
+        }
+        if(isNaN(port) || port < 0 || port > 65535 || !port.trim()){
+            errorMessage.port = "Please enter a valid port";
+        }
+        
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            ...errorMessage
+        }));
+
+        if(!Object.values(errorMessage).some((error) => error !== "")){
+            console.log(image, port);            //TODO: replace with axios call
+        }
+    }
+
     return (
         <div>
             <SidePanel>
@@ -75,11 +104,16 @@ export default function Page() {
                                         type="text"
                                         name="image"
                                         id="image"
+                                        value={image}
+                                        onChange={(event) => {
+                                            setImage(event.target.value);
+                                        }}
                                         required
                                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
                                         placeholder="  eg:localhost"
                                     />
                                 </div>
+                                <span className="text-red-500">{errors.image}</span>
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="port"
@@ -92,59 +126,20 @@ export default function Page() {
                                         type="number"
                                         name="port"
                                         id="port"
+                                        value={port}
+                                        onChange={(event) => {
+                                            setPort(event.target.value);
+                                        }}
                                         required
                                         className="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
                                         placeholder="  eg:localhost"
                                     />
                                 </div>
-                            </div>
-                            <div>
-                                <div className="mt-10 flex rounded-md shadow-sm">
-                                    <span
-                                        className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
-                                      Path
-                                    </span>
-                                    <input
-                                        type="text"
-                                        name="company-website"
-                                        id="company-website"
-                                        className="block w-full min-w-0 flex-1 rounded-none px-3 rounded-r-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-                                        placeholder="  www.example.com"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="mt-10 flex rounded-md shadow-sm">
-                                    <span
-                                        className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
-                                      Node Version
-                                    </span>
-                                    <input
-                                        type="text"
-                                        name="company-website"
-                                        id="company-website"
-                                        className="sm:max-w-md flex-1 rounded-none px-3 rounded-r-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-                                        placeholder="www.example.com"
-                                    />
-                                </div>
-                            </div>
-                            <div>
-                                <div className="mt-10 flex rounded-md shadow-sm">
-                                    <span
-                                        className="inline-flex items-center rounded-l-md border border-r-0 border-gray-300 px-3 text-gray-500 sm:text-sm">
-                                      Yarn Version
-                                    </span>
-                                    <input
-                                        type="text"
-                                        name="company-website"
-                                        id="company-website"
-                                        className="block max-w-md flex-1 rounded-none px-3 rounded-r-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-200 sm:text-sm sm:leading-6"
-                                        placeholder="www.example.com"
-                                    />
-                                </div>
+                                <span className="text-red-500">{errors.port}</span>
                             </div>
                             <button type="submit"
-                                    className="rounded-md mt-10 w-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    className="rounded-md mt-10 w-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    onClick={handleClick}>
                                 Submit
                             </button>
                         </div>
